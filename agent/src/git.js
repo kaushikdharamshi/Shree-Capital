@@ -7,8 +7,12 @@
 
 import { execFileSync } from 'node:child_process';
 
-function git(args, cwd) {
-  return execFileSync('git', args, { cwd, encoding: 'utf8' }).trim();
+function git(args, cwd, { quiet = false } = {}) {
+  return execFileSync('git', args, {
+    cwd,
+    encoding: 'utf8',
+    stdio: quiet ? ['ignore', 'pipe', 'ignore'] : undefined,
+  }).trim();
 }
 
 export function currentBranch(cwd) {
@@ -22,7 +26,10 @@ export function isClean(cwd) {
 export function defaultBranch(cwd) {
   try {
     // e.g. "refs/remotes/origin/main" -> "main"
-    return git(['symbolic-ref', '--short', 'refs/remotes/origin/HEAD'], cwd).split('/').pop();
+    // Not set on every clone; falling back to the current branch is fine.
+    return git(['symbolic-ref', '--short', 'refs/remotes/origin/HEAD'], cwd, { quiet: true })
+      .split('/')
+      .pop();
   } catch {
     return currentBranch(cwd);
   }

@@ -91,13 +91,21 @@ Work out which website changes this conversation asks for, make them, then call 
     messages: [{ role: 'user', content: userMessage }],
   };
 
-  const runner = client.beta.messages.toolRunner({ ...params, max_iterations: maxIterations });
+  /* Streaming is required at this max_tokens — the SDK refuses non-streaming
+     requests it estimates could exceed the 10-minute HTTP timeout. With
+     stream: true each iteration yields a stream rather than a message. */
+  const runner = client.beta.messages.toolRunner({
+    ...params,
+    stream: true,
+    max_iterations: maxIterations,
+  });
 
   let iterations = 0;
   let last = null;
   const usage = { input: 0, output: 0, cacheRead: 0 };
 
-  for await (const message of runner) {
+  for await (const stream of runner) {
+    const message = await stream.finalMessage();
     iterations += 1;
     last = message;
 
