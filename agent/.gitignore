@@ -1,0 +1,5 @@
+node_modules/
+state.json
+runs.log
+inbox/*.txt
+processed/

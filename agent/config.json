@@ -1,0 +1,8 @@
+{
+  "siteRoot": "..",
+  "editablePaths": ["index.html", "assets/css", "assets/js", "README.md"],
+  "allowedSenders": [],
+  "effort": "xhigh",
+  "maxIterations": 40,
+  "watchIntervalSeconds": 60
+}

@@ -1,0 +1,17 @@
+{
+  "name": "shree-capital-whatsapp-agent",
+  "version": "1.0.0",
+  "description": "Reads a WhatsApp chat export and opens a PR updating the Shree Capital website",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dry-run": "node src/index.js --dry-run",
+    "watch": "node src/index.js --watch",
+    "test": "node --test test/parser.test.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.115.0"
+  },
+  "private": true
+}
