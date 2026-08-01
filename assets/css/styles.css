@@ -98,7 +98,7 @@ table{border-collapse:collapse;width:100%}
 .header.is-stuck .brand__logo{width:60px;height:60px}
 .brand__text{display:flex;flex-direction:column;line-height:1.1;min-width:0}
 .brand__text strong{font-family:var(--head);font-size:1.62rem;color:var(--green-800);letter-spacing:.055em;font-weight:800}
-.brand__sub{font-size:.68rem;letter-spacing:.19em;color:var(--green-700);font-weight:600;margin-top:.16rem}
+.brand__sub{font-size:.68rem;letter-spacing:.19em;color:var(--green-700);font-weight:600;margin-top:.16rem;white-space:nowrap}
 .brand__tag{font-family:var(--head);font-style:italic;font-size:.8rem;color:var(--gold-600);margin-top:.24rem}
 
 .header__right{display:flex;align-items:center;gap:1.2rem}
@@ -108,7 +108,7 @@ table{border-collapse:collapse;width:100%}
 .nav__link{
   display:inline-flex;align-items:center;gap:.3rem;background:none;border:0;color:var(--ink);
   padding:.5rem .72rem;border-radius:7px;font-size:.84rem;font-weight:600;letter-spacing:.045em;
-  text-transform:uppercase;position:relative;transition:color .2s;
+  text-transform:uppercase;position:relative;white-space:nowrap;transition:color .2s;
 }
 .nav__link::after{content:"";position:absolute;left:.72rem;right:.72rem;bottom:.2rem;height:2px;background:var(--gold-500);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
 .nav__link:hover,.nav__link.is-active{color:var(--green-700)}
@@ -246,6 +246,44 @@ table{border-collapse:collapse;width:100%}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:clamp(3rem,5vw,4.2rem);border-top:1px solid var(--line);padding-top:2.2rem;text-align:center}
 .stats strong{display:block;font-family:var(--head);font-size:clamp(1.9rem,3.4vw,2.7rem);color:var(--green-800)}
 .stats span{font-size:.84rem;color:var(--ink-soft);letter-spacing:.05em}
+
+/* ---------------- vision / mission / values ---------------- */
+.vm__grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(1.2rem,2.6vw,2rem);align-items:stretch}
+.vm__card{
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);
+  padding:clamp(1.5rem,3vw,2.1rem);
+  transition:transform .28s var(--ease),border-color .28s,background .28s;
+}
+.vm__card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold-400),transparent)}
+.vm__card:hover{transform:translateY(-4px);border-color:var(--gold-400);background:rgba(255,255,255,.08)}
+.vm__card--vision{justify-content:center}
+.vm__icon{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;border:2px solid var(--gold-400);color:var(--gold-400);margin-bottom:1rem}
+.vm__icon .ico{width:26px;height:26px}
+.vm__card h3{font-size:clamp(1.25rem,2.2vw,1.45rem);color:#fff;margin-bottom:.7rem}
+.vm__quote{margin:0;padding-left:2rem;position:relative;font-family:var(--head);font-style:italic;font-size:clamp(1rem,1.7vw,1.18rem);line-height:1.62;color:#e9f2eb}
+.vm__quote::before{content:"\201C";position:absolute;left:0;top:-.08em;font-family:var(--head);font-size:3.4rem;line-height:1;color:var(--gold-500);opacity:.75}
+.vm__quote p{margin:0}
+.vm__lead{color:#b9cec2;font-size:.92rem;margin-bottom:0}
+.vm__mission{margin:.9rem 0 0}
+.vm__mission li{color:#dbe7de}
+.vm__mission strong{color:#fff}
+
+.vm__vtitle{text-align:center;color:#fff;font-size:clamp(1.4rem,2.6vw,1.9rem);margin:clamp(2.4rem,5vw,3.4rem) 0 1.7rem}
+.vm__vtitle::after{content:"";display:block;width:72px;height:2px;background:var(--gold-500);margin:.85rem auto 0}
+
+.values{display:flex;flex-wrap:wrap;justify-content:center;gap:1.1rem}
+.values li{
+  flex:0 1 calc(25% - .825rem);background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);
+  padding:1.4rem 1.25rem;text-align:center;
+  transition:transform .25s var(--ease),border-color .25s,background .25s;
+}
+.values li:hover{transform:translateY(-5px);border-color:var(--gold-400);background:rgba(255,255,255,.085)}
+.values .ico{display:block;width:32px;height:32px;color:var(--gold-400);margin:0 auto .75rem}
+.values h4{font-size:1rem;color:#fff;margin-bottom:.35rem}
+.values p{font-size:.84rem;color:#b9cec2;margin:0}
 
 /* ---------------- product blocks ---------------- */
 .prodblock{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:clamp(1.4rem,3vw,2.2rem);margin-bottom:2rem}
@@ -450,7 +488,9 @@ table{border-collapse:collapse;width:100%}
   .why__grid{grid-template-columns:repeat(2,1fr)}
   .footer__grid{grid-template-columns:1.4fr 1fr 1fr;row-gap:2.2rem}
   .nav__list{gap:.1rem}
-  .nav__link{padding:.5rem .5rem;font-size:.78rem}
+  .nav__link{padding:.5rem .44rem;font-size:.76rem;letter-spacing:.03em}
+  .nav__link::after{left:.44rem;right:.44rem}
+  .values li{flex-basis:calc(33.333% - .734rem)}
   .brand__logo{width:62px;height:62px}
   .brand__text strong{font-size:1.35rem}
 }
@@ -458,6 +498,7 @@ table{border-collapse:collapse;width:100%}
 @media (max-width:900px){
   html{scroll-padding-top:88px}
   .navtoggle{display:flex}
+  .brand__sub{white-space:normal}
   .header__inner{padding:.6rem 0}
   .header__right{position:static}
   .nav{
@@ -480,7 +521,8 @@ table{border-collapse:collapse;width:100%}
   .hero__dots{bottom:calc(1rem + 150px)}
   .hero__trust{grid-template-columns:repeat(2,1fr);gap:1rem .5rem}
   .hero__trust li:nth-child(2){border-right:0}
-  .about__grid,.panel__grid,.calc,.proc__grid,.contact__grid{grid-template-columns:1fr}
+  .about__grid,.panel__grid,.calc,.proc__grid,.contact__grid,.vm__grid{grid-template-columns:1fr}
+  .values li{flex-basis:calc(50% - .55rem)}
   .calc__result{position:static}
   .stats{grid-template-columns:repeat(2,1fr);gap:1.6rem 1rem}
   .about__badge{right:.8rem;bottom:-1rem}
@@ -495,6 +537,10 @@ table{border-collapse:collapse;width:100%}
   .topbar__inner{justify-content:center;gap:.5rem 1rem;padding-block:.35rem}
   .quick__grid{grid-template-columns:1fr}
   .why__grid{grid-template-columns:1fr}
+  .values li{flex-basis:100%}
+  .vm__card--vision{justify-content:flex-start}
+  .vm__quote{padding-left:1.7rem}
+  .vm__quote::before{font-size:2.5rem;top:0}
   .footer__grid{grid-template-columns:1fr;text-align:left}
   .brand__text strong{font-size:1.16rem;letter-spacing:.03em}
   .brand__sub{font-size:.58rem;letter-spacing:.1em}

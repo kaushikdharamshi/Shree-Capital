@@ -466,7 +466,7 @@
     }
     /* Static site: hand the enquiry to the member's mail client. */
     var subject = 'Website enquiry — ' + productField.value;
-    window.location.href = 'mailto:info@shreecapital.coop'
+    window.location.href = 'mailto:info.shreecapital26@gmail.com'
       + '?subject=' + encodeURIComponent(subject)
       + '&body=' + encodeURIComponent(summary());
     setStatus('Opening your email app. If nothing happens, call us on 73000 99621.');
