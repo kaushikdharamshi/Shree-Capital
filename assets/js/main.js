@@ -9,28 +9,6 @@
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
   var WA_NUMBER = '917300099621';
 
-  /* ---------------- header: shadow on scroll ---------------- */
-  var header = $('#header');
-  var toTop = $('#toTop');
-
-  function onScroll() {
-    var y = window.pageYOffset;
-    header.classList.toggle('is-stuck', y > 40);
-    toTop.classList.toggle('is-visible', y > 600);
-    /* near the top, Home is always the current section */
-    if (y < 260) {
-      $$('.nav__list a.nav__link').forEach(function (a) {
-        a.classList.toggle('is-active', a.getAttribute('href') === '#home');
-      });
-    }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  toTop.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
   /* ---------------- mobile nav ---------------- */
   var navToggle = $('#navToggle');
   var nav = $('#primaryNav');
@@ -77,15 +55,6 @@
       dropBtn.setAttribute('aria-expanded', 'false');
       closeNav();
     }
-  });
-
-  /* close the mobile drawer after tapping any in-page link */
-  $$('a[href^="#"]').forEach(function (link) {
-    link.addEventListener('click', function () {
-      drop.classList.remove('is-open');
-      dropBtn.setAttribute('aria-expanded', 'false');
-      if (window.innerWidth <= 900) closeNav();
-    });
   });
 
   /* ---------------- hero carousel ---------------- */
@@ -142,10 +111,13 @@
 
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
 
-  /* ---------------- tabs ---------------- */
+  /* ---------------- tabs ----------------
+     Tab groups nest (Products > Deposits > FD), so each group only
+     claims the tabs and panels that belong to it directly. */
   $$('[data-tabs]').forEach(function (group) {
-    var tabs = $$('.tab', group);
-    var panels = $$('.panel', group);
+    var own = function (el) { return el.closest('[data-tabs]') === group; };
+    var tabs = $$('.tab', group).filter(own);
+    var panels = $$('.panel', group).filter(own);
 
     function activate(index) {
       tabs.forEach(function (t, i) {
@@ -156,6 +128,7 @@
         p.classList.toggle('is-active', i === index);
         p.hidden = i !== index;
       });
+      fitActive();
     }
 
     tabs.forEach(function (tab, i) {
@@ -167,33 +140,6 @@
         var n = (i + dir + tabs.length) % tabs.length;
         tabs[n].focus();
         activate(n);
-      });
-    });
-  });
-
-  /* deep links such as #mis or #group-loan open the right tab */
-  function openTabFor(hash) {
-    var id = (hash || '').replace('#', '');
-    if (!id) return;
-    var tab = document.querySelector('[aria-controls="' + id + '"]');
-    if (tab && !tab.classList.contains('is-active')) tab.click();
-  }
-  window.addEventListener('hashchange', function () { openTabFor(location.hash); });
-  $$('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function () { openTabFor(a.getAttribute('href')); });
-  });
-  openTabFor(location.hash);
-
-  /* ---------------- rate switcher ---------------- */
-  var rateBtns = $$('.switcher__btn', $('#rateSwitch'));
-  var rateTables = { deposit: $('#rateDeposit'), loan: $('#rateLoan') };
-
-  rateBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var kind = btn.dataset.rate;
-      rateBtns.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
-      Object.keys(rateTables).forEach(function (key) {
-        rateTables[key].hidden = key !== kind;
       });
     });
   });
@@ -215,42 +161,28 @@
         btn.setAttribute('aria-expanded', 'true');
         body.style.maxHeight = body.scrollHeight + 'px';
       }
+      fitActive();
     });
   });
 
-  /* ---------------- reveal on scroll + counters ---------------- */
-  var revealables = $$('.reveal');
-  var counters = $$('.count');
-
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-in');
-        io.unobserve(entry.target);
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
-    revealables.forEach(function (el) { io.observe(el); });
-
-    var co = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        countUp(entry.target);
-        co.unobserve(entry.target);
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(function (el) { co.observe(el); });
-  } else {
-    revealables.forEach(function (el) { el.classList.add('is-in'); });
-    counters.forEach(countUp);
-  }
-
+  /* ---------------- counters ---------------- */
   function countUp(el) {
     var target = parseFloat(el.dataset.target) || 0;
     var prefix = el.dataset.prefix || '';
     var suffix = el.dataset.suffix || '';
     var duration = 1500;
     var startedAt = null;
+    var settled = prefix + target.toLocaleString('en-IN') + suffix;
+
+    /* the animation is decoration - guarantee the real number lands
+       even if rAF is throttled or the tab was backgrounded */
+    setTimeout(function () { el.textContent = settled; }, duration + 120);
+
+    if (!window.requestAnimationFrame ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = settled;
+      return;
+    }
 
     function frame(now) {
       if (startedAt === null) startedAt = now;
@@ -262,23 +194,123 @@
     requestAnimationFrame(frame);
   }
 
-  /* ---------------- scroll spy ---------------- */
-  var navLinks = $$('.nav__list a.nav__link');
-  var sections = navLinks
-    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
-    .filter(Boolean);
+  /* ============================================================
+     View router + fit guard
 
-  if ('IntersectionObserver' in window && sections.length) {
-    var so = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        navLinks.forEach(function (a) {
-          a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id);
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(function (s) { so.observe(s); });
+     The document never scrolls. Each nav target is a full-height
+     .view; an in-page link activates the view that owns it and
+     opens any tabs along the way. fit() then shrinks the view
+     until its content fits the screen exactly: the box is sized
+     1/--fit and zoomed back by --fit, so lowering --fit hands the
+     content more logical space without changing its rendered box.
+     ============================================================ */
+  var views = $$('.view');
+  var navLinks = $$('.nav__list a.nav__link');
+  var MIN_FIT = 0.55;
+
+  function viewFor(id) {
+    var el = id ? document.getElementById(id) : null;
+    if (!el) return null;
+    return el.classList.contains('view') ? el : el.closest('.view');
   }
+
+  function activeView() {
+    return views.filter(function (v) { return v.classList.contains('is-active'); })[0];
+  }
+
+  /* How many pixels of content are spilling out of this view? The
+     inner box and the panels are height:100%, so an overrun shows
+     up as scrollHeight > clientHeight on one of them rather than
+     on the view itself. */
+  function overflowOf(view) {
+    var worst = 0;
+    [$('.view__inner', view)].concat($$('.panel.is-active', view)).forEach(function (el) {
+      if (!el) return;
+      var over = el.scrollHeight - el.clientHeight;
+      if (over > worst) worst = over;
+    });
+    return worst;
+  }
+
+  function fit(view) {
+    view.style.setProperty('--fit', '1');
+    for (var i = 0; i < 6; i++) {
+      var avail = view.clientHeight;
+      var over = overflowOf(view);
+      if (!avail || over <= 1) break;
+      var cur = Number(view.style.getPropertyValue('--fit')) || 1;
+      var next = Math.max(MIN_FIT, cur * (avail / (avail + over)));
+      if (next >= cur - 0.004) break;
+      view.style.setProperty('--fit', String(next));
+    }
+  }
+
+  function fitActive() {
+    var view = activeView();
+    if (!view) return;
+    fit(view);
+    /* re-check once the browser has settled (fonts, images, reflow) */
+    if (window.requestAnimationFrame) requestAnimationFrame(function () { fit(view); });
+  }
+
+  /* open every tab between a view and a deep-linked target */
+  function openTabFor(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var chain = [];
+    for (var node = el; node && node !== document.body; node = node.parentNode) {
+      if (node.classList && node.classList.contains('panel')) chain.push(node);
+    }
+    chain.reverse().forEach(function (panel) {
+      var tab = document.querySelector('.tab[aria-controls="' + panel.id + '"]');
+      if (tab && !tab.classList.contains('is-active')) tab.click();
+    });
+  }
+
+  var counted = false;
+  function showView(view, targetId) {
+    if (!view) return;
+    views.forEach(function (v) { v.classList.toggle('is-active', v === view); });
+    navLinks.forEach(function (a) {
+      a.classList.toggle('is-active', a.getAttribute('href') === '#' + view.id);
+    });
+    if (targetId && targetId !== view.id) openTabFor(targetId);
+    if (view.id === 'about' && !counted) {
+      counted = true;
+      $$('.count', view).forEach(countUp);
+    }
+    fit(view);
+  }
+
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      var view = viewFor(id);
+      if (!view) return;
+      e.preventDefault();
+      if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+      showView(view, id);
+      drop.classList.remove('is-open');
+      dropBtn.setAttribute('aria-expanded', 'false');
+      if (window.innerWidth <= 900) closeNav();
+    });
+  });
+
+  window.addEventListener('hashchange', function () {
+    var id = location.hash.slice(1);
+    showView(viewFor(id) || views[0], id);
+  });
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(fitActive, 120);
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitActive);
+  window.addEventListener('load', fitActive);
+
+  /* honour a deep link on first paint, else show Home */
+  showView(viewFor(location.hash.slice(1)) || views[0], location.hash.slice(1));
 
   /* ============================================================
      Calculators — each input is paired with a slider of the same
