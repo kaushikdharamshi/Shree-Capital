@@ -434,8 +434,18 @@
     status.classList.toggle('is-error', !!isError);
   }
 
+  /* WhatsApp is the primary route, so it is what submitting the form does */
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    if (!validate()) {
+      setStatus('Please correct the highlighted fields.', true);
+      return;
+    }
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(summary()), '_blank', 'noopener');
+    setStatus('Opening WhatsApp with your enquiry.');
+  });
+
+  $('#mailSend').addEventListener('click', function () {
     if (!validate()) {
       setStatus('Please correct the highlighted fields.', true);
       return;
@@ -446,15 +456,6 @@
       + '?subject=' + encodeURIComponent(subject)
       + '&body=' + encodeURIComponent(summary());
     setStatus('Opening your email app. If nothing happens, call us on 73000 99621.');
-  });
-
-  $('#waSend').addEventListener('click', function () {
-    if (!validate()) {
-      setStatus('Please correct the highlighted fields.', true);
-      return;
-    }
-    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(summary()), '_blank', 'noopener');
-    setStatus('Opening WhatsApp with your enquiry.');
   });
 
   /* ---------------- misc ---------------- */

@@ -61,6 +61,8 @@ body.app {
    even when the rest of the disclaimer is dropped */
 .appfoot__credit a { text-decoration: underline; color: #a9c3b4 }
 .appfoot__credit a:hover { color: var(--gold-400) }
+.appfoot__wa { color: #a9c3b4; text-decoration: underline }
+.appfoot__wa:hover { color: var(--gold-400) }
 
 /* ---------------- view machinery ---------------- */
 .views { position: relative; overflow: hidden; flex: 1 1 auto; min-height: 0 }
