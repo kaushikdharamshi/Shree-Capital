@@ -57,6 +57,10 @@ body.app {
 }
 .appfoot p { margin: 0 }
 .appfoot__disc { text-align: right }
+/* CC BY requires the credit to stay visible, so it survives on mobile
+   even when the rest of the disclaimer is dropped */
+.appfoot__credit a { text-decoration: underline; color: #a9c3b4 }
+.appfoot__credit a:hover { color: var(--gold-400) }
 
 /* ---------------- view machinery ---------------- */
 .views { position: relative; overflow: hidden; flex: 1 1 auto; min-height: 0 }
@@ -117,7 +121,35 @@ body.app {
 .view--dark .tab { background: rgba(255, 255, 255, .08); color: #dbe7de; border-color: rgba(255, 255, 255, .16) }
 .view--dark .tab.is-active { background: var(--gold-500); color: #fff; border-color: var(--gold-500) }
 
-/* ---------------- home ---------------- */
+/* ---------------- home ----------------
+   Mehrangarh Fort sits behind all three slides. The scrim stays dark
+   on the left, where the headline is, and clears towards the right so
+   the fort reads. Photo: Vyacheslav Argenberg, CC BY 4.0 - credited
+   in the footer. */
+#home .hero {
+  background-color: var(--green-900);
+  background-image: url("../img/jodhpur-fort.jpg");
+  background-size: cover;
+  background-position: 50% 32%;
+  background-repeat: no-repeat;
+}
+#home .slide::before { display: none }
+#home .slide::after {
+  background: linear-gradient(100deg,
+    rgba(6, 39, 25, .93) 0%,
+    rgba(6, 39, 25, .84) 26%,
+    rgba(6, 39, 25, .46) 56%,
+    rgba(6, 39, 25, .12) 84%,
+    rgba(6, 39, 25, .02) 100%);
+}
+#home .slide h1 { text-shadow: 0 2px 16px rgba(0, 0, 0, .55) }
+#home .slide__lead { text-shadow: 0 1px 10px rgba(0, 0, 0, .5) }
+/* narrow screens get a separate, tighter crop: the wide panorama
+   leaves only a sliver of rock face once cover-cropped to portrait */
+@media (max-width: 900px) {
+  #home .hero { background-image: url("../img/jodhpur-fort-sm.jpg") }
+}
+
 /* the hero may flex, but never collapse - if the cards below need
    more room the fit guard shrinks the whole view instead */
 #home .hero { flex: 1 1 auto; min-height: 210px; position: relative; overflow: hidden }
@@ -331,6 +363,16 @@ body.app {
   .nav__list { margin-top: 2.4rem }
   .nav__link { font-size: .84rem; padding: .7rem .6rem }
 
+  /* portrait screens put the text over the whole photo, so the scrim
+     runs top-to-bottom instead of left-to-right */
+  #home .hero { background-position: 50% 42% }
+  #home .slide::after {
+    background: linear-gradient(180deg,
+      rgba(6, 39, 25, .74) 0%,
+      rgba(6, 39, 25, .50) 42%,
+      rgba(6, 39, 25, .84) 100%);
+  }
+
   #home .hero__trust { grid-template-columns: repeat(2, 1fr); gap: .5rem }
   #home .hero__trust li:nth-child(2) { border-right: 0 }
   /* flex, so the trailing row of two centres instead of hugging left */
@@ -416,8 +458,9 @@ body.app {
 
   .wafloat { bottom: 2.4rem }
 
-  .appfoot__disc { display: none }
-  .appfoot__inner { justify-content: center; text-align: center }
+  .appfoot__legal { display: none }
+  .appfoot__disc { text-align: center }
+  .appfoot__inner { justify-content: center; text-align: center; gap: .1rem .8rem }
 }
 
 /* short screens (landscape phones): drop the decoration first */
