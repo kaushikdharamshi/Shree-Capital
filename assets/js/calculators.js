@@ -64,16 +64,17 @@
   }
 
   /**
-   * Recurring deposit maturity, quarterly compounding.
+   * Recurring deposit maturity, annual compounding — the basis of the
+   * published RD rate card (₹1,000 x 60 months at 11% => ₹79,137).
    * Each instalment earns interest for the months remaining after it is paid.
    */
   function rdMaturity(instalment, annualRate, months) {
     if (instalment <= 0 || months <= 0) return 0;
-    var q = annualRate / 100 / 4;
+    var r = annualRate / 100;
     var total = 0;
     for (var k = 1; k <= months; k++) {
       var held = months - k + 1;          // months this instalment stays invested
-      total += instalment * Math.pow(1 + q, held / 3);
+      total += instalment * Math.pow(1 + r, held / 12);
     }
     return total;
   }
