@@ -57,24 +57,7 @@
           <li><a class="nav__link is-active" href="#home">Home</a></li>
           <li><a class="nav__link" href="#about">About Us</a></li>
           <li><a class="nav__link" href="#vision">Vision</a></li>
-          <li class="has-drop">
-            <button class="nav__link nav__drop" aria-expanded="false">Products
-              <svg class="ico caret" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
-            <div class="dropdown">
-              <div class="dropdown__col">
-                <p class="dropdown__title">Deposits</p>
-                <a href="#fd"><span>Fixed Deposit (FD)</span><small>3 – 120 months, up to 13.5% p.a.</small></a>
-                <a href="#mis"><span>Monthly Income Scheme (MIS)</span><small>Regular monthly payout, up to 14% p.a.</small></a>
-                <a href="#rd"><span>Recurring Deposit (RD)</span><small>Start from ₹1,000 per month</small></a>
-              </div>
-              <div class="dropdown__col">
-                <p class="dropdown__title">Loans</p>
-                <a href="#group-loan"><span>Group Loan</span><small>Joint liability, for self-help groups</small></a>
-                <a href="#individual-loan"><span>Individual Loan</span><small>Personal, business &amp; loan against FD</small></a>
-              </div>
-            </div>
-          </li>
+          <li><a class="nav__link" href="#products">Products</a></li>
           <li><a class="nav__link" href="#rates">Rates</a></li>
           <li><a class="nav__link" href="#calculators">Calculators</a></li>
           <li><a class="nav__link" href="#contact">Contact Us</a></li>
@@ -113,7 +96,7 @@
               <h1>Deposits That Work As Hard As You Do</h1>
               <p class="slide__lead">Fixed Deposit, Monthly Income Scheme and Recurring Deposit — attractive rates with annual compounding.</p>
               <div class="slide__actions">
-                <a class="btn btn--gold" href="#deposits">View Deposit Plans</a>
+                <a class="btn btn--gold" href="#products">View Deposit Plans</a>
                 <a class="btn btn--outline" href="#rates">See Interest Rates</a>
               </div>
             </div>
@@ -124,7 +107,7 @@
               <h1>Group &amp; Individual Loans, Simply Done</h1>
               <p class="slide__lead">Quick processing, minimal documentation and repayment plans that fit your cash flow.</p>
               <div class="slide__actions">
-                <a class="btn btn--gold" href="#loans">Explore Loans</a>
+                <a class="btn btn--gold" href="#products">Explore Loans</a>
                 <a class="btn btn--outline" href="#emi">EMI Calculator</a>
               </div>
             </div>
@@ -147,23 +130,28 @@
         <div class="quick__grid">
           <a class="qcard qcard--dark" href="#fd">
             <span class="qcard__icon"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
-            <h3>Fixed Deposit (FD)</h3>
-            <p class="qcard__rate">Up to <strong>13.50%<sup>*</sup></strong> <span>p.a.</span></p>
+            <h3>Fixed Deposit</h3>
+            <p class="qcard__rate">Up to <strong>13.50%<sup>*</sup></strong></p>
           </a>
           <a class="qcard" href="#mis">
             <span class="qcard__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M4 14a5 5 0 0 1 5-5h5a5 5 0 0 1 5 5v4H4z"/><path d="M19 12h2v3h-2"/><circle cx="9" cy="13" r="1"/><path d="M8 9V7a3 3 0 0 1 6 0"/></svg></span>
-            <h3>Monthly Income Scheme</h3>
-            <p class="qcard__rate">Up to <strong>14.00%<sup>*</sup></strong> <span>p.a.</span></p>
+            <h3>Monthly Income</h3>
+            <p class="qcard__rate">Up to <strong>14.00%<sup>*</sup></strong></p>
           </a>
           <a class="qcard qcard--dark" href="#rd">
             <span class="qcard__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M4 13a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v5H4z"/><circle cx="9" cy="12" r="1"/><path d="M13 4h4M15 4v4"/></svg></span>
-            <h3>Recurring Deposit (RD)</h3>
-            <p class="qcard__rate">Up to <strong>13.00%<sup>*</sup></strong> <span>p.a.</span></p>
+            <h3>Recurring Deposit</h3>
+            <p class="qcard__rate">Up to <strong>13.00%<sup>*</sup></strong></p>
           </a>
-          <a class="qcard" href="#loans">
+          <a class="qcard" href="#group-loan">
             <span class="qcard__icon"><svg class="ico" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 19c0-3 2.7-5 6-5s6 2 6 5"/><path d="M14 14c4 0 8 1.5 8 5"/></svg></span>
-            <h3>Group &amp; Individual Loans</h3>
-            <p class="qcard__rate">From <strong>12.00%<sup>*</sup></strong> <span>p.a.</span></p>
+            <h3>Group Loan</h3>
+            <p class="qcard__rate">From <strong>18.00%<sup>*</sup></strong></p>
+          </a>
+          <a class="qcard qcard--dark" href="#individual-loan">
+            <span class="qcard__icon"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg></span>
+            <h3>Individual Loan</h3>
+            <p class="qcard__rate">From <strong>12.00%<sup>*</sup></strong></p>
           </a>
         </div>
       </div>
@@ -315,215 +303,260 @@
     </div>
   </section>
 
-  <!-- ---------------- PRODUCTS ---------------- -->
+  <!-- ---------------- PRODUCTS (overview of buttons) ---------------- -->
   <section class="view view--cream" id="products" aria-label="Products">
     <div class="view__inner container">
       <header class="viewhead">
         <p class="eyebrow">Our Products</p>
-        <h2 class="h2">Two Ways We Serve Our Members</h2>
+        <h2 class="h2">Pick a Product to Open It</h2>
       </header>
+      <div class="view__body">
+        <ul class="prodmenu">
+          <li><a href="#fd">
+            <span class="prodmenu__icon"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+            <span class="prodmenu__body"><strong>Fixed Deposit (FD)</strong><small>Lump sum, compounded to maturity</small></span>
+            <span class="prodmenu__rate">13.50%</span>
+          </a></li>
+          <li><a href="#mis">
+            <span class="prodmenu__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M4 14a5 5 0 0 1 5-5h5a5 5 0 0 1 5 5v4H4z"/><path d="M19 12h2v3h-2"/><circle cx="9" cy="13" r="1"/><path d="M8 9V7a3 3 0 0 1 6 0"/></svg></span>
+            <span class="prodmenu__body"><strong>Monthly Income Scheme</strong><small>Interest paid out every month</small></span>
+            <span class="prodmenu__rate">14.00%</span>
+          </a></li>
+          <li><a href="#rd">
+            <span class="prodmenu__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M4 13a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v5H4z"/><circle cx="9" cy="12" r="1"/><path d="M13 4h4M15 4v4"/></svg></span>
+            <span class="prodmenu__body"><strong>Recurring Deposit (RD)</strong><small>Save a fixed amount every month</small></span>
+            <span class="prodmenu__rate">13.00%</span>
+          </a></li>
+          <li><a href="#group-loan">
+            <span class="prodmenu__icon"><svg class="ico" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 19c0-3 2.7-5 6-5s6 2 6 5"/><path d="M14 14c4 0 8 1.5 8 5"/></svg></span>
+            <span class="prodmenu__body"><strong>Group Loan</strong><small>Joint liability, no collateral</small></span>
+            <span class="prodmenu__rate">18.00%</span>
+          </a></li>
+          <li><a href="#individual-loan">
+            <span class="prodmenu__icon"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg></span>
+            <span class="prodmenu__body"><strong>Individual Loan</strong><small>Personal, business or against FD</small></span>
+            <span class="prodmenu__rate">12.00%</span>
+          </a></li>
+          <li><a href="#apply">
+            <span class="prodmenu__icon"><svg class="ico" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="m9 14 2 2 4-4"/></svg></span>
+            <span class="prodmenu__body"><strong>How to Apply</strong><small>Four steps and five documents</small></span>
+            <span class="prodmenu__rate prodmenu__rate--plain">Guide</span>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      <div class="tabs view__body" data-tabs>
-        <div class="tabs__nav" role="tablist" aria-label="Product groups">
-          <button class="tab is-active" role="tab" aria-selected="true" aria-controls="deposits" id="tab-deposits">Deposits</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="loans" id="tab-loans">Loans</button>
-          <button class="tab" role="tab" aria-selected="false" aria-controls="apply" id="tab-apply">How to Apply</button>
+  <section class="view view--cream" id="fd" data-nav="#products" aria-label="Fixed Deposit (FD)">
+    <div class="view__inner container">
+      <header class="viewhead viewhead--detail">
+        <a class="backlink" href="#products"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>All Products</a>
+        <p class="eyebrow">Deposit Product</p>
+        <h2 class="h2">Fixed Deposit (FD)</h2>
+      </header>
+      <div class="view__body">
+        <div class="panel__grid">
+          <div>
+            <p>Park a lump sum for a fixed tenure and let annual compounding do the work — a higher, predictable return without market risk.</p>
+            <ul class="ticks">
+                <li>Tenure from <strong>3 to 120 months</strong>, annual compounding</li>
+                <li><strong>Double &amp; Triple Money</strong> plans available</li>
+                <li>Loan against your FD up to <strong>90% of value</strong></li>
+                <li>Nomination facility; premature withdrawal as per rules</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--dark btn--sm" href="#fd-calc">Calculate FD Maturity</a>
+              <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Fixed Deposit (FD)">Enquire Now</a>
+            </div>
+          </div>
+          <aside class="spec">
+            <p class="spec__label">Highlights</p>
+            <dl>
+                  <div><dt>Interest rate</dt><dd>Up to 13.50% p.a.*</dd></div>
+                  <div><dt>Minimum deposit</dt><dd>₹5,000</dd></div>
+                  <div><dt>Tenure</dt><dd>3 – 120 months</dd></div>
+                  <div><dt>Interest payout</dt><dd>On maturity</dd></div>
+            </dl>
+          </aside>
         </div>
-        <div class="tabs__panels">
+      </div>
+    </div>
+  </section>
 
-          <!-- DEPOSITS -->
-          <div class="panel is-active" id="deposits" role="tabpanel" aria-labelledby="tab-deposits">
-            <div class="tabs tabs--sub" data-tabs>
-              <div class="tabs__nav" role="tablist" aria-label="Deposit products">
-                <button class="tab is-active" role="tab" aria-selected="true" aria-controls="fd" id="tab-fd">Fixed Deposit (FD)</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="mis" id="tab-mis">Monthly Income Scheme</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="rd" id="tab-rd">Recurring Deposit (RD)</button>
-              </div>
-              <div class="tabs__panels">
-
-                <div class="panel is-active" id="fd" role="tabpanel" aria-labelledby="tab-fd">
-                  <div class="panel__grid">
-                    <div>
-                      <h4>Fixed Deposit (FD)</h4>
-                      <p>Park a lump sum for a fixed tenure and let annual compounding do the work — a higher, predictable return without market risk.</p>
-                      <ul class="ticks">
-                        <li>Tenure from <strong>3 to 120 months</strong>, annual compounding</li>
-                        <li><strong>Double &amp; Triple Money</strong> plans available</li>
-                        <li>Loan against your FD up to <strong>90% of value</strong></li>
-                        <li>Nomination facility; premature withdrawal as per rules</li>
-                      </ul>
-                      <div class="panel__actions">
-                        <a class="btn btn--dark btn--sm" href="#fd-calc">Calculate FD Maturity</a>
-                        <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Fixed Deposit (FD)">Enquire Now</a>
-                      </div>
-                    </div>
-                    <aside class="spec">
-                      <p class="spec__label">Highlights</p>
-                      <dl>
-                        <div><dt>Interest rate</dt><dd>Up to 13.50% p.a.*</dd></div>
-                        <div><dt>Minimum deposit</dt><dd>₹5,000</dd></div>
-                        <div><dt>Tenure</dt><dd>3 – 120 months</dd></div>
-                        <div><dt>Interest payout</dt><dd>On maturity</dd></div>
-                      </dl>
-                    </aside>
-                  </div>
-                </div>
-
-                <div class="panel" id="mis" role="tabpanel" aria-labelledby="tab-mis" hidden>
-                  <div class="panel__grid">
-                    <div>
-                      <h4>Monthly Income Scheme (MIS)</h4>
-                      <p>Deposit once, receive interest as income every single month. MIS suits retirees and anyone who wants their savings to pay a steady monthly bill.</p>
-                      <ul class="ticks">
-                        <li><strong>Regular monthly income</strong> credited to your account</li>
-                        <li><strong>Flexible tenure</strong> options to match your plans</li>
-                        <li>Special MIS plans up to <strong>14% p.a.</strong></li>
-                        <li>Principal returned in full at maturity</li>
-                      </ul>
-                      <div class="panel__actions">
-                        <a class="btn btn--dark btn--sm" href="#mis-calc">Calculate Monthly Income</a>
-                        <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Monthly Income Scheme (MIS)">Enquire Now</a>
-                      </div>
-                    </div>
-                    <aside class="spec">
-                      <p class="spec__label">Highlights</p>
-                      <dl>
-                        <div><dt>Interest rate</dt><dd>Up to 14.00% p.a.*</dd></div>
-                        <div><dt>Minimum deposit</dt><dd>₹25,000</dd></div>
-                        <div><dt>Tenure</dt><dd>12 – 120 months</dd></div>
-                        <div><dt>Interest payout</dt><dd>Monthly</dd></div>
-                      </dl>
-                    </aside>
-                  </div>
-                </div>
-
-                <div class="panel" id="rd" role="tabpanel" aria-labelledby="tab-rd" hidden>
-                  <div class="panel__grid">
-                    <div>
-                      <h4>Recurring Deposit (RD)</h4>
-                      <p>Build a corpus one month at a time. A small, fixed amount every month grows into a meaningful sum — the easiest saving habit to keep.</p>
-                      <ul class="ticks">
-                        <li>Start saving with just <strong>₹1,000 per month</strong></li>
-                        <li>Flexible tenure of <strong>12 – 72 months</strong></li>
-                        <li>Ideal for all age groups, including minors</li>
-                        <li>Standing instruction and doorstep collection support</li>
-                      </ul>
-                      <div class="panel__actions">
-                        <a class="btn btn--dark btn--sm" href="#rd-calc">Calculate RD Maturity</a>
-                        <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Recurring Deposit (RD)">Enquire Now</a>
-                      </div>
-                    </div>
-                    <aside class="spec">
-                      <p class="spec__label">Highlights</p>
-                      <dl>
-                        <div><dt>Interest rate</dt><dd>Up to 13.00% p.a.*</dd></div>
-                        <div><dt>Minimum instalment</dt><dd>₹1,000 / month</dd></div>
-                        <div><dt>Tenure</dt><dd>12 – 72 months</dd></div>
-                        <div><dt>Compounding</dt><dd>Quarterly</dd></div>
-                      </dl>
-                    </aside>
-                  </div>
-                </div>
-
-              </div>
+  <section class="view view--cream" id="mis" data-nav="#products" aria-label="Monthly Income Scheme (MIS)">
+    <div class="view__inner container">
+      <header class="viewhead viewhead--detail">
+        <a class="backlink" href="#products"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>All Products</a>
+        <p class="eyebrow">Deposit Product</p>
+        <h2 class="h2">Monthly Income Scheme (MIS)</h2>
+      </header>
+      <div class="view__body">
+        <div class="panel__grid">
+          <div>
+            <p>Deposit once, receive interest as income every single month. MIS suits retirees and anyone who wants their savings to pay a steady monthly bill.</p>
+            <ul class="ticks">
+                <li><strong>Regular monthly income</strong> credited to your account</li>
+                <li><strong>Flexible tenure</strong> options to match your plans</li>
+                <li>Special MIS plans up to <strong>14% p.a.</strong></li>
+                <li>Principal returned in full at maturity</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--dark btn--sm" href="#mis-calc">Calculate Monthly Income</a>
+              <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Monthly Income Scheme (MIS)">Enquire Now</a>
             </div>
           </div>
+          <aside class="spec">
+            <p class="spec__label">Highlights</p>
+            <dl>
+                  <div><dt>Interest rate</dt><dd>Up to 14.00% p.a.*</dd></div>
+                  <div><dt>Minimum deposit</dt><dd>₹25,000</dd></div>
+                  <div><dt>Tenure</dt><dd>12 – 120 months</dd></div>
+                  <div><dt>Interest payout</dt><dd>Monthly</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <!-- LOANS -->
-          <div class="panel" id="loans" role="tabpanel" aria-labelledby="tab-loans" hidden>
-            <div class="tabs tabs--sub" data-tabs>
-              <div class="tabs__nav" role="tablist" aria-label="Loan products">
-                <button class="tab is-active" role="tab" aria-selected="true" aria-controls="group-loan" id="tab-group">Group Loan</button>
-                <button class="tab" role="tab" aria-selected="false" aria-controls="individual-loan" id="tab-individual">Individual Loan</button>
-              </div>
-              <div class="tabs__panels">
-
-                <div class="panel is-active" id="group-loan" role="tabpanel" aria-labelledby="tab-group">
-                  <div class="panel__grid">
-                    <div>
-                      <h4>Group Loan</h4>
-                      <p>Credit for self-help groups and joint liability groups. Members guarantee each other, which keeps documentation light and approvals fast.</p>
-                      <ul class="ticks">
-                        <li>Groups of <strong>5 to 20 members</strong> under joint liability</li>
-                        <li><strong>No collateral</strong> — the group is the guarantee</li>
-                        <li>Weekly, fortnightly or monthly repayment options</li>
-                        <li>Doorstep collection and on-ground field support</li>
-                      </ul>
-                      <div class="panel__actions">
-                        <a class="btn btn--dark btn--sm" href="#emi">Calculate EMI</a>
-                        <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Group Loan">Apply for Group Loan</a>
-                      </div>
-                    </div>
-                    <aside class="spec">
-                      <p class="spec__label">Highlights</p>
-                      <dl>
-                        <div><dt>Interest rate</dt><dd>From 18.00% p.a.*</dd></div>
-                        <div><dt>Loan amount</dt><dd>₹15,000 – ₹1,00,000</dd></div>
-                        <div><dt>Tenure</dt><dd>12 – 36 months</dd></div>
-                        <div><dt>Collateral</dt><dd>Not required</dd></div>
-                      </dl>
-                    </aside>
-                  </div>
-                </div>
-
-                <div class="panel" id="individual-loan" role="tabpanel" aria-labelledby="tab-individual" hidden>
-                  <div class="panel__grid">
-                    <div>
-                      <h4>Individual Loan</h4>
-                      <p>A personal loan in your own name for business working capital, education, medical needs, a wedding or home repair. Hold a deposit with us and you can borrow against it.</p>
-                      <ul class="ticks">
-                        <li>Loan amount <strong>₹50,000 to ₹10,00,000</strong></li>
-                        <li><strong>Loan against FD</strong> up to 90% of deposit value</li>
-                        <li>Tenure up to <strong>60 months</strong> with flexible EMIs</li>
-                        <li>Part prepayment and foreclosure allowed</li>
-                      </ul>
-                      <div class="panel__actions">
-                        <a class="btn btn--dark btn--sm" href="#emi">Calculate EMI</a>
-                        <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Individual Loan">Apply for Individual Loan</a>
-                      </div>
-                    </div>
-                    <aside class="spec">
-                      <p class="spec__label">Highlights</p>
-                      <dl>
-                        <div><dt>Interest rate</dt><dd>From 12.00% p.a.*</dd></div>
-                        <div><dt>Loan amount</dt><dd>₹50,000 – ₹10,00,000</dd></div>
-                        <div><dt>Tenure</dt><dd>12 – 60 months</dd></div>
-                        <div><dt>Against FD</dt><dd>Up to 90% of FD value</dd></div>
-                      </dl>
-                    </aside>
-                  </div>
-                </div>
-
-              </div>
+  <section class="view view--cream" id="rd" data-nav="#products" aria-label="Recurring Deposit (RD)">
+    <div class="view__inner container">
+      <header class="viewhead viewhead--detail">
+        <a class="backlink" href="#products"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>All Products</a>
+        <p class="eyebrow">Deposit Product</p>
+        <h2 class="h2">Recurring Deposit (RD)</h2>
+      </header>
+      <div class="view__body">
+        <div class="panel__grid">
+          <div>
+            <p>Build a corpus one month at a time. A small, fixed amount every month grows into a meaningful sum — the easiest saving habit to keep.</p>
+            <ul class="ticks">
+                <li>Start saving with just <strong>₹1,000 per month</strong></li>
+                <li>Flexible tenure of <strong>12 – 72 months</strong></li>
+                <li>Ideal for all age groups, including minors</li>
+                <li>Standing instruction and doorstep collection support</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--dark btn--sm" href="#rd-calc">Calculate RD Maturity</a>
+              <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Recurring Deposit (RD)">Enquire Now</a>
             </div>
           </div>
+          <aside class="spec">
+            <p class="spec__label">Highlights</p>
+            <dl>
+                  <div><dt>Interest rate</dt><dd>Up to 13.00% p.a.*</dd></div>
+                  <div><dt>Minimum instalment</dt><dd>₹1,000 / month</dd></div>
+                  <div><dt>Tenure</dt><dd>12 – 72 months</dd></div>
+                  <div><dt>Compounding</dt><dd>Quarterly</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <!-- HOW TO APPLY -->
-          <div class="panel" id="apply" role="tabpanel" aria-labelledby="tab-apply" hidden>
-            <div class="proc__grid">
-              <div>
-                <p class="proc__title">Four Steps, Start to Finish</p>
-                <ol class="steps">
-                  <li><span>1</span><div><h4>Become a member</h4><p>Fill a short form and pay the one-time membership share amount.</p></div></li>
-                  <li><span>2</span><div><h4>Choose your product</h4><p>Pick a deposit scheme or a loan and settle on tenure and amount.</p></div></li>
-                  <li><span>3</span><div><h4>Submit documents</h4><p>Hand over the five standard KYC documents listed alongside.</p></div></li>
-                  <li><span>4</span><div><h4>Get confirmed</h4><p>Receive your deposit receipt or loan sanction, usually within a week.</p></div></li>
-                </ol>
-              </div>
-              <aside class="docs">
-                <h3>Documents Required</h3>
-                <ul>
-                  <li><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.4 1.7-2 3-2s2.4.6 3 2"/><path d="M15 10h4M15 13h4"/></svg>Aadhaar Card</li>
-                  <li><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h6M7 13h10M7 16h4"/></svg>PAN Card</li>
-                  <li><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M6.5 19c1-2.6 3-4 5.5-4s4.5 1.4 5.5 4"/></svg>Passport Size Photograph</li>
-                  <li><svg class="ico" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>Mobile Number</li>
-                  <li><svg class="ico" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>Address Proof</li>
-                </ul>
-                <p class="docs__note">Group loan applicants also submit a group resolution and the member list.</p>
-              </aside>
+  <section class="view view--cream" id="group-loan" data-nav="#products" aria-label="Group Loan">
+    <div class="view__inner container">
+      <header class="viewhead viewhead--detail">
+        <a class="backlink" href="#products"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>All Products</a>
+        <p class="eyebrow">Loan Product</p>
+        <h2 class="h2">Group Loan</h2>
+      </header>
+      <div class="view__body">
+        <div class="panel__grid">
+          <div>
+            <p>Credit for self-help groups and joint liability groups. Members guarantee each other, which keeps documentation light and approvals fast.</p>
+            <ul class="ticks">
+                <li>Groups of <strong>5 to 20 members</strong> under joint liability</li>
+                <li><strong>No collateral</strong> — the group is the guarantee</li>
+                <li>Weekly, fortnightly or monthly repayment options</li>
+                <li>Doorstep collection and on-ground field support</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--dark btn--sm" href="#emi">Calculate EMI</a>
+              <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Group Loan">Apply for Group Loan</a>
             </div>
           </div>
+          <aside class="spec">
+            <p class="spec__label">Highlights</p>
+            <dl>
+                  <div><dt>Interest rate</dt><dd>From 18.00% p.a.*</dd></div>
+                  <div><dt>Loan amount</dt><dd>₹15,000 – ₹1,00,000</dd></div>
+                  <div><dt>Tenure</dt><dd>12 – 36 months</dd></div>
+                  <div><dt>Collateral</dt><dd>Not required</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="view view--cream" id="individual-loan" data-nav="#products" aria-label="Individual Loan">
+    <div class="view__inner container">
+      <header class="viewhead viewhead--detail">
+        <a class="backlink" href="#products"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>All Products</a>
+        <p class="eyebrow">Loan Product</p>
+        <h2 class="h2">Individual Loan</h2>
+      </header>
+      <div class="view__body">
+        <div class="panel__grid">
+          <div>
+            <p>A personal loan in your own name for business working capital, education, medical needs, a wedding or home repair. Hold a deposit with us and you can borrow against it.</p>
+            <ul class="ticks">
+                <li>Loan amount <strong>₹50,000 to ₹10,00,000</strong></li>
+                <li><strong>Loan against FD</strong> up to 90% of deposit value</li>
+                <li>Tenure up to <strong>60 months</strong> with flexible EMIs</li>
+                <li>Part prepayment and foreclosure allowed</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="btn btn--dark btn--sm" href="#emi">Calculate EMI</a>
+              <a class="btn btn--ghost-dark btn--sm" href="#enquiry" data-prefill="Individual Loan">Apply for Individual Loan</a>
+            </div>
+          </div>
+          <aside class="spec">
+            <p class="spec__label">Highlights</p>
+            <dl>
+                  <div><dt>Interest rate</dt><dd>From 12.00% p.a.*</dd></div>
+                  <div><dt>Loan amount</dt><dd>₹50,000 – ₹10,00,000</dd></div>
+                  <div><dt>Tenure</dt><dd>12 – 60 months</dd></div>
+                  <div><dt>Against FD</dt><dd>Up to 90% of FD value</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------------- HOW TO APPLY ---------------- -->
+  <section class="view view--cream" id="apply" data-nav="#products" aria-label="How to apply">
+    <div class="view__inner container">
+      <header class="viewhead viewhead--detail">
+        <a class="backlink" href="#products"><svg class="ico" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>All Products</a>
+        <p class="eyebrow">Getting Started</p>
+        <h2 class="h2">How to Apply</h2>
+      </header>
+      <div class="view__body">
+        <div class="proc__grid">
+          <div>
+            <p class="proc__title">Four Steps, Start to Finish</p>
+            <ol class="steps">
+              <li><span>1</span><div><h4>Become a member</h4><p>Fill a short form and pay the one-time membership share amount.</p></div></li>
+              <li><span>2</span><div><h4>Choose your product</h4><p>Pick a deposit scheme or a loan and settle on tenure and amount.</p></div></li>
+              <li><span>3</span><div><h4>Submit documents</h4><p>Hand over the five standard KYC documents listed alongside.</p></div></li>
+              <li><span>4</span><div><h4>Get confirmed</h4><p>Receive your deposit receipt or loan sanction, usually within a week.</p></div></li>
+            </ol>
+          </div>
+          <aside class="docs">
+            <h3>Documents Required</h3>
+            <ul>
+              <li><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.4 1.7-2 3-2s2.4.6 3 2"/><path d="M15 10h4M15 13h4"/></svg>Aadhaar Card</li>
+              <li><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h6M7 13h10M7 16h4"/></svg>PAN Card</li>
+              <li><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M6.5 19c1-2.6 3-4 5.5-4s4.5 1.4 5.5 4"/></svg>Passport Size Photograph</li>
+              <li><svg class="ico" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>Mobile Number</li>
+              <li><svg class="ico" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>Address Proof</li>
+            </ul>
+            <p class="docs__note">Group loan applicants also submit a group resolution and the member list.</p>
+          </aside>
         </div>
       </div>
     </div>

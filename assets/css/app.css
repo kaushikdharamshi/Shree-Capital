@@ -89,7 +89,7 @@ body.app {
 .viewhead .eyebrow { font-size: .65rem; letter-spacing: .2em; margin-bottom: .2rem }
 .viewhead .h2 { font-size: clamp(1.15rem, 2.7vh, 2.1rem); margin: 0 }
 
-.view__body { flex: 1; min-height: 0; display: flex; flex-direction: column }
+.view__body { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center }
 .view__body > .tabs__panels { flex: 1; min-height: 0 }
 .view__body > .tabs__nav { flex: none }
 /* centre a panel's content in whatever room the screen leaves,
@@ -141,7 +141,7 @@ body.app {
 #home .hero__trust li { color: var(--ink); font-size: .76rem; border-right-color: var(--line) }
 #home .hero__trust .ico { width: 20px; height: 20px; color: var(--gold-600) }
 
-#home .quick__grid { grid-template-columns: repeat(4, 1fr); gap: .7rem }
+#home .quick__grid { grid-template-columns: repeat(5, 1fr); gap: .7rem }
 #home .qcard { padding: .85rem .9rem; box-shadow: var(--shadow-sm); align-items: center; text-align: center }
 #home .qcard__icon { width: 40px; height: 40px; margin-bottom: .5rem }
 #home .qcard__icon .ico { width: 20px; height: 20px }
@@ -181,16 +181,78 @@ body.app {
 #vision .values h4 { font-size: .9rem }
 #vision .values p { font-size: .76rem }
 
-/* ---------------- products ---------------- */
-#products .panel__grid { grid-template-columns: 1.35fr .65fr; gap: 1.3rem; align-items: start }
-#products .panel__grid h4 { font-size: 1.05rem; margin-bottom: .35rem }
-#products .panel__grid > div > p { font-size: .85rem; margin-bottom: .5rem }
-#products .ticks { gap: .38rem; margin: .5rem 0 .8rem }
-#products .ticks li { font-size: .83rem }
-#products .spec { padding: .9rem }
-#products .spec dl { gap: .45rem }
-#products .spec dl > div { font-size: .78rem; padding-bottom: .45rem }
-#products .spec__label { margin-bottom: .55rem }
+/* ---------------- products ----------------
+   the old nav dropdown is now a screen of buttons; each one opens
+   the product's own screen, which carries a link back here */
+.prodmenu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .8rem;
+}
+.prodmenu a {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  height: 100%;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold-400);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.15rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s;
+}
+.prodmenu a:hover, .prodmenu a:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: var(--gold-500);
+}
+.prodmenu__icon {
+  display: grid; place-items: center;
+  width: 42px; height: 42px; flex: none;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1.5px solid var(--gold-400);
+  color: var(--green-800);
+}
+.prodmenu__icon .ico { width: 21px; height: 21px }
+.prodmenu__body { display: flex; flex-direction: column; min-width: 0; flex: 1 }
+.prodmenu__body strong { font-size: .92rem; color: var(--green-800); line-height: 1.25 }
+.prodmenu__body small { font-size: .76rem; color: var(--ink-soft); margin-top: .12rem }
+.prodmenu__rate {
+  flex: none;
+  font-family: var(--head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold-600);
+}
+.prodmenu__rate--plain { font-size: .78rem; font-family: var(--body); color: var(--ink-soft) }
+
+.viewhead--detail { position: relative }
+.backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--green-700);
+  margin-bottom: .35rem;
+  transition: color .2s, gap .2s;
+}
+.backlink:hover { color: var(--gold-600); gap: .45rem }
+.backlink .ico { width: 15px; height: 15px }
+
+/* ---------------- product detail ---------------- */
+.panel__grid { grid-template-columns: 1.35fr .65fr; gap: 1.3rem; align-items: start }
+.panel__grid > div > p { font-size: .88rem; margin-bottom: .5rem }
+.panel__grid .ticks { gap: .38rem; margin: .5rem 0 .9rem }
+.panel__grid .ticks li { font-size: .85rem }
+.spec { padding: .9rem }
+.spec dl { gap: .45rem }
+.spec dl > div { font-size: .78rem; padding-bottom: .45rem }
+.spec__label { margin-bottom: .55rem }
 
 .proc__grid { grid-template-columns: 1.1fr .9fr; gap: 1.4rem; align-items: start }
 .proc__title { font-family: var(--head); font-size: 1.05rem; color: var(--green-800); margin: 0 0 .5rem }
@@ -271,16 +333,19 @@ body.app {
 
   #home .hero__trust { grid-template-columns: repeat(2, 1fr); gap: .5rem }
   #home .hero__trust li:nth-child(2) { border-right: 0 }
-  #home .quick__grid { grid-template-columns: repeat(2, 1fr) }
+  /* flex, so the trailing row of two centres instead of hugging left */
+  #home .quick__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: .55rem }
+  #home .qcard { flex: 0 1 calc(33.333% - .37rem) }
 
   #about .about__grid { grid-template-columns: 1fr }
   #about .about__media { display: none }
   #about .stats { grid-template-columns: repeat(4, 1fr) }
   .why__grid { grid-template-columns: repeat(2, 1fr) }
 
-  #products .panel__grid, .proc__grid, #calculators .calc, #contact .contact__grid {
+  .panel__grid, .proc__grid, #calculators .calc, #contact .contact__grid {
     grid-template-columns: 1fr;
   }
+  .prodmenu { grid-template-columns: repeat(2, 1fr) }
   #contact .map { min-height: 130px }
   #calculators .calc__result { align-self: stretch }
 }
@@ -306,6 +371,14 @@ body.app {
   .why__grid p { font-size: .72rem }
 
   #about .stats { grid-template-columns: repeat(2, 1fr); gap: .5rem }
+
+  .prodmenu { grid-template-columns: 1fr; gap: .5rem }
+  .prodmenu a { padding: .6rem .75rem; gap: .65rem }
+  .prodmenu__icon { width: 34px; height: 34px }
+  .prodmenu__icon .ico { width: 18px; height: 18px }
+  .prodmenu__body strong { font-size: .84rem }
+  .prodmenu__body small { font-size: .7rem }
+  .prodmenu__rate { font-size: .92rem }
 
   /* seven centred value cards stack far too tall on a phone -
      switch them to compact icon + text rows */

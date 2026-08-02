@@ -25,36 +25,8 @@
     document.body.style.overflow = open && window.innerWidth <= 900 ? 'hidden' : '';
   });
 
-  /* ---------------- products dropdown ---------------- */
-  var drop = $('.has-drop');
-  var dropBtn = $('.nav__drop');
-
-  dropBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    var open = drop.classList.toggle('is-open');
-    dropBtn.setAttribute('aria-expanded', String(open));
-  });
-
-  drop.addEventListener('mouseenter', function () {
-    if (window.innerWidth > 900) { drop.classList.add('is-open'); dropBtn.setAttribute('aria-expanded', 'true'); }
-  });
-  drop.addEventListener('mouseleave', function () {
-    if (window.innerWidth > 900) { drop.classList.remove('is-open'); dropBtn.setAttribute('aria-expanded', 'false'); }
-  });
-
-  document.addEventListener('click', function (e) {
-    if (!drop.contains(e.target) && window.innerWidth > 900) {
-      drop.classList.remove('is-open');
-      dropBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      drop.classList.remove('is-open');
-      dropBtn.setAttribute('aria-expanded', 'false');
-      closeNav();
-    }
+    if (e.key === 'Escape') closeNav();
   });
 
   /* ---------------- hero carousel ---------------- */
@@ -224,7 +196,8 @@
      on the view itself. */
   function overflowOf(view) {
     var worst = 0;
-    [$('.view__inner', view)].concat($$('.panel.is-active', view)).forEach(function (el) {
+    [$('.view__inner', view), $('.view__body', view)]
+      .concat($$('.panel.is-active', view)).forEach(function (el) {
       if (!el) return;
       var over = el.scrollHeight - el.clientHeight;
       if (over > worst) worst = over;
@@ -271,8 +244,10 @@
   function showView(view, targetId) {
     if (!view) return;
     views.forEach(function (v) { v.classList.toggle('is-active', v === view); });
+    /* a product screen keeps Products lit in the nav */
+    var navHref = view.dataset.nav || '#' + view.id;
     navLinks.forEach(function (a) {
-      a.classList.toggle('is-active', a.getAttribute('href') === '#' + view.id);
+      a.classList.toggle('is-active', a.getAttribute('href') === navHref);
     });
     if (targetId && targetId !== view.id) openTabFor(targetId);
     if (view.id === 'about' && !counted) {
@@ -288,18 +263,20 @@
       var view = viewFor(id);
       if (!view) return;
       e.preventDefault();
-      if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+      /* push, don't replace: each screen is its own history entry so
+         the browser back button walks back through them */
+      if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);
       showView(view, id);
-      drop.classList.remove('is-open');
-      dropBtn.setAttribute('aria-expanded', 'false');
       if (window.innerWidth <= 900) closeNav();
     });
   });
 
-  window.addEventListener('hashchange', function () {
+  function fromLocation() {
     var id = location.hash.slice(1);
     showView(viewFor(id) || views[0], id);
-  });
+  }
+  window.addEventListener('popstate', fromLocation);
+  window.addEventListener('hashchange', fromLocation);
 
   var resizeTimer = null;
   window.addEventListener('resize', function () {
