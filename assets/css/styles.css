@@ -227,10 +227,6 @@ table{border-collapse:collapse;width:100%}
 .about__badge strong{display:block;font-family:var(--head);color:var(--gold-400);font-size:1.15rem}
 .about__badge span{font-size:.74rem;letter-spacing:.13em;text-transform:uppercase}
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:clamp(3rem,5vw,4.2rem);border-top:1px solid var(--line);padding-top:2.2rem;text-align:center}
-.stats strong{display:block;font-family:var(--head);font-size:clamp(1.9rem,3.4vw,2.7rem);color:var(--green-800)}
-.stats span{font-size:.84rem;color:var(--ink-soft);letter-spacing:.05em}
-
 /* ---------------- vision / mission / values ---------------- */
 .vm__grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(1.2rem,2.6vw,2rem);align-items:stretch}
 .vm__card{
@@ -503,7 +499,6 @@ table{border-collapse:collapse;width:100%}
   .about__grid,.panel__grid,.calc,.proc__grid,.contact__grid,.vm__grid{grid-template-columns:1fr}
   .values li{flex-basis:calc(50% - .55rem)}
   .calc__result{position:static}
-  .stats{grid-template-columns:repeat(2,1fr);gap:1.6rem 1rem}
   .about__badge{right:.8rem;bottom:-1rem}
   .hero__arrow{top:auto;bottom:calc(1rem + 150px)}
   .hero__arrow--prev{left:.7rem}

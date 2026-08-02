@@ -190,9 +190,6 @@ body.app {
 #about .about__badge { padding: .5rem .9rem; right: .4rem; bottom: -.7rem }
 #about .about__badge strong { font-size: .95rem }
 #about .about__badge span { font-size: .62rem }
-#about .stats { margin-top: clamp(1rem, 3vh, 2rem); padding-top: clamp(.7rem, 1.8vh, 1.3rem); gap: .6rem }
-#about .stats strong { font-size: clamp(1.2rem, 3vh, 2.1rem) }
-#about .stats span { font-size: .72rem }
 
 .why__grid { grid-template-columns: repeat(3, 1fr); gap: .7rem }
 .why__grid li { padding: .9rem .95rem }
@@ -381,7 +378,6 @@ body.app {
 
   #about .about__grid { grid-template-columns: 1fr }
   #about .about__media { display: none }
-  #about .stats { grid-template-columns: repeat(4, 1fr) }
   .why__grid { grid-template-columns: repeat(2, 1fr) }
 
   .panel__grid, .proc__grid, #calculators .calc, #contact .contact__grid {
@@ -411,8 +407,6 @@ body.app {
   .why__grid li { padding: .7rem .75rem }
   .why__grid h4 { font-size: .82rem }
   .why__grid p { font-size: .72rem }
-
-  #about .stats { grid-template-columns: repeat(2, 1fr); gap: .5rem }
 
   .prodmenu { grid-template-columns: 1fr; gap: .5rem }
   .prodmenu a { padding: .6rem .75rem; gap: .65rem }
